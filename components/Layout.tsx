@@ -1,15 +1,17 @@
 import React from 'react';
 import Head from 'next/head';
-import Navbar from './Navbar';
 
+import Header from './Header';
 interface LayoutProps {
-  pageTitle: string;
+  pageTitle?: string;
   description: string;
+  path?: string;
 }
 
 const Layout: React.FC<LayoutProps> = ({
   pageTitle,
   description,
+  path = 'Barato!',
   children,
 }) => {
   return (
@@ -20,7 +22,11 @@ const Layout: React.FC<LayoutProps> = ({
         <meta name='description' content={description} />
         <meta property='og:title' content={pageTitle} key='ogtitle' />
         <meta property='og:description' content={description} key='ogdesc' />
-        <title>{pageTitle}</title>
+        <meta name='twitter:card' content='summary' key='twcard' />
+        <meta name='twitter:creator' content='@dhencios15' key='twhandle' />
+        <title>
+          {path} | {pageTitle}
+        </title>
 
         {/* Twitter */}
         {/* <meta name="twitter:card" content="summary" key="twcard" />
@@ -33,7 +39,7 @@ const Layout: React.FC<LayoutProps> = ({
             <meta property="og:title" content={pageTitle} key="ogtitle" />
             <meta property="og:description" content={description} key="ogdesc" /> */}
       </Head>
-      <Navbar />
+      <Header />
       <main>{children}</main>
     </React.Fragment>
   );
